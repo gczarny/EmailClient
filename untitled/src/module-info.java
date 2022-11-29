@@ -7,4 +7,5 @@ module FirstJavaFX {
 
     opens com.app;
     opens com.app.view;
+    opens com.app.controller;
 }
