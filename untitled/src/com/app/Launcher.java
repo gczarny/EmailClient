@@ -14,19 +14,12 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-/*        Button btn = new Button("Say Hello World!");
-        //btn.setText("Say Hello World!");
-        btn.setOnAction(e -> {
-                System.out.println("Hello World!");
-        });
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);*/
-        Parent parent = FXMLLoader.load(getClass().getResource("view/first.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("view/LoginWindow.fxml"));
 
-        Scene scene = new Scene(parent, 300, 250);
+        Scene scene = new Scene(parent, 423, 309);
 
-        primaryStage.setTitle("Hello world!");
+        primaryStage.setTitle("Login window");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
