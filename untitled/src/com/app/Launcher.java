@@ -23,7 +23,8 @@ public class Launcher extends Application {
         primaryStage.show();*/
 
         ViewFactory viewFactory = new ViewFactory(new EmailManager());
-        viewFactory.showLoginWindow();
-        //viewFactory.showOptionsWindow();
+        //viewFactory.showLoginWindow();
+        viewFactory.showOptionsWindow();
+        viewFactory.updateStyles();
     }
 }
