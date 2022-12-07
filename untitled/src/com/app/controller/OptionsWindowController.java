@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Slider;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -31,12 +30,12 @@ public class OptionsWindowController extends BaseController implements Initializ
     @FXML
     void applyBtnAction() {
         viewFactory.setColorTheme(themePicker.getValue());
-        viewFactory.setFontSize(FontSize.values()[(int)(fontSizePicker.getValue())]); //get in as an index of array
+        viewFactory.setFontSize(FontSize.values()[(int)(fontSizePicker.getValue())]);
         viewFactory.updateStyles();
     }
 
     @FXML
-    void cancelBtnAction() {
+    void cancelButtonAction() {
         Stage stage = (Stage) fontSizePicker.getScene().getWindow();
         viewFactory.closeStage(stage);
     }
@@ -57,8 +56,6 @@ public class OptionsWindowController extends BaseController implements Initializ
         fontSizePicker.setSnapToTicks(true);
         fontSizePicker.setShowTickMarks(true);
         fontSizePicker.setShowTickLabels(true);
-
-        //set values as enum
         fontSizePicker.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double object) {
@@ -71,8 +68,6 @@ public class OptionsWindowController extends BaseController implements Initializ
                 return null;
             }
         });
-
-        //Snaps directly to the value
         fontSizePicker.valueProperty().addListener((obs, oldVal, newVal) -> {
             fontSizePicker.setValue(newVal.intValue());
         });

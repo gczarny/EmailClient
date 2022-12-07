@@ -23,41 +23,41 @@ public class ViewFactory {
         activeStages = new ArrayList<Stage>();
     }
 
-
-
     //View options handling:
-    private ColorTheme colorTheme = ColorTheme.DARK;
+    private ColorTheme colorTheme = ColorTheme.DEFAULT;
     private FontSize fontSize = FontSize.MEDIUM;
+
     public ColorTheme getColorTheme() {
         return colorTheme;
     }
+
     public void setColorTheme(ColorTheme colorTheme) {
         this.colorTheme = colorTheme;
     }
+
     public FontSize getFontSize() {
         return fontSize;
     }
+
     public void setFontSize(FontSize fontSize) {
         this.fontSize = fontSize;
     }
-    //////////////////////////////
-    public void showLoginWindow(){
-        System.out.println("Show login window called");
+
+    public void showLoginWindow() {
+        System.out.println("show login window called");
 
         BaseController controller = new LoginWindowController(emailManager, this, "LoginWindow.fxml");
         initializeStage(controller);
     }
-
     public void showMainWindow(){
-        System.out.println("Show main window");
+        System.out.println("main window called");
 
         BaseController controller = new MainWindowController(emailManager, this, "MainWindow.fxml");
         initializeStage(controller);
     }
 
     public void showOptionsWindow(){
-        System.out.println("Show options window");
-
+        System.out.println("options window called");
         BaseController controller = new OptionsWindowController(emailManager, this, "OptionsWindow.fxml");
         initializeStage(controller);
     }
@@ -66,9 +66,9 @@ public class ViewFactory {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(baseController.getFxmlName()));
         fxmlLoader.setController(baseController);
         Parent parent;
-        try{
+        try {
             parent = fxmlLoader.load();
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return;
         }
@@ -79,15 +79,14 @@ public class ViewFactory {
         activeStages.add(stage);
     }
 
-    public void closeStage(Stage stageToClose){
+    public  void closeStage(Stage stageToClose){
         stageToClose.close();
         activeStages.remove(stageToClose);
     }
 
     public void updateStyles() {
-        for(Stage stage : activeStages){
+        for (Stage stage: activeStages) {
             Scene scene = stage.getScene();
-            //handle the css
             scene.getStylesheets().clear();
             scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
             scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());

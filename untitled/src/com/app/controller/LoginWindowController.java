@@ -3,7 +3,7 @@ package com.app.controller;
 import com.app.EmailManager;
 import com.app.view.ViewFactory;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -11,10 +11,10 @@ import javafx.stage.Stage;
 public class LoginWindowController extends BaseController {
 
     @FXML
-    private TextField emailAddress;
+    private Button errorLabel;
 
     @FXML
-    private Label errorLabel;
+    private TextField emailAddressFied;
 
     @FXML
     private PasswordField passwordField;
@@ -25,7 +25,7 @@ public class LoginWindowController extends BaseController {
 
     @FXML
     void loginButtonAction() {
-        System.out.println("loginButtonAction!");
+        System.out.println("loginButtonAction!!");
         viewFactory.showMainWindow();
         Stage stage = (Stage) errorLabel.getScene().getWindow();
         viewFactory.closeStage(stage);
