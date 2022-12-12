@@ -10,4 +10,5 @@ module EmailClient {
     opens com.app;
     opens com.app.view;
     opens com.app.controller;
+    opens com.app.model;
 }
