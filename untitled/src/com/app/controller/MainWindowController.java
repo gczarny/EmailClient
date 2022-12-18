@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.EmailManager;
+import com.app.controller.services.MessageRendererService;
 import com.app.model.EmailMessage;
 import com.app.model.EmailTreeItem;
 import com.app.model.SizeInteger;
@@ -35,10 +36,9 @@ public class MainWindowController extends BaseController implements Initializabl
     private TableColumn<EmailMessage, SizeInteger> sizeCol;
     @FXML
     private TableColumn<EmailMessage, String> subjectCol;
-
-
     @FXML
     private WebView emailWebView;
+    private MessageRendererService messageRendererService;
 
     public MainWindowController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
         super(emailManager, viewFactory, fxmlName);
@@ -59,6 +59,22 @@ public class MainWindowController extends BaseController implements Initializabl
         setUpEMailsTableView();
         setUpFolderSelection();
         setUpBoldRows();
+        setUpMessageRendererService();
+        setUpMessageSelection();
+    }
+
+    private void setUpMessageSelection() {
+        emailsTableView.setOnMouseClicked(event -> {
+            EmailMessage emailMessage = emailsTableView.getSelectionModel().getSelectedItem();
+            if(emailMessage != null){
+                messageRendererService.setEmailMessage(emailMessage);
+                messageRendererService.restart();
+            }
+        });
+    }
+
+    private void setUpMessageRendererService() {
+        messageRendererService = new MessageRendererService(emailWebView.getEngine());
     }
 
     private void setUpBoldRows() {
